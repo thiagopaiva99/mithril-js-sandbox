@@ -14,7 +14,11 @@
     m.render(root, [
         m("h1", { class: "document-title" }, "DOM Elements"),
         m("hr"),
-        m("p", { class: "document-content" }, "Rendering many DOM elements in the same DOM tree")
+        m("p", { class: "document-content" }, "Rendering many DOM elements in the same DOM tree"),
+        m("button", "Button"),
+        m("section", { class: "document-section" }, [
+            m("a", { href: "https://www.google.com" }, "Access Google")
+        ])
     ])
     </script>
 </body>
