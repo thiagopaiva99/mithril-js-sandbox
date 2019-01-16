@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello Mithril.js</title>
+</head>
+<body>
+    <script src="https://unpkg.com/mithril/mithril.js"></script>
+    <script>
+        const root = document.body
+
+        let count = 0
+
+        const Home = {
+            view: () => 
+                m("main", [
+                    m("h1", { class: "title" }, "Home Page!"),
+                    m("section", [
+                        m("button", { 
+                            onclick: () => count++
+                        }, "+"),
+                        m("span", [
+                            m("strong", `${count} clicks`)
+                        ]),
+                        m("button", { 
+                            onclick: () => count--
+                        }, "-"),
+                    ]),
+                    m("section", [
+                        m("a", { href: "#!/about" }, "Access about page!")
+                    ])
+                ])
+        }
+
+        const About = {
+            view: () => 
+                m("main", [
+                    m("h1", { class: "title" }, "About Page!"),
+                    m("p", { class: "about" }, "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker."),
+                    m("section", [
+                        m("a", { href: "#!/" }, "Access home page!")
+                    ])
+                ])
+        }
+
+        m.route(root, "/", {
+            "/": Home,
+            "/about": About
+        })
+
+        m.mount(root, Hello)
+    </script>
+</body>
+</html>
