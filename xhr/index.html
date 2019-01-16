@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello Mithril.js</title>
+</head>
+<body>
+    <script src="https://unpkg.com/mithril/mithril.js"></script>
+    <script>
+        const root = document.body
+
+        let count = 0
+
+        const setCountValue = value => {
+            m.request({
+                method: "PUT",
+                url: "//rem-rest-api.herokuapp.com/api/tutorial/1",
+                data: { 
+                    count: count + value
+                },
+                withCredentials: true
+            })
+            .then(data => count = parseInt(data.count))
+        }
+
+        const Home = {
+            view: () => 
+                m("main", [
+                    m("h1", { class: "title" }, "Home Page!"),
+                    m("section", [
+                        m("button", { 
+                            onclick: () => setCountValue(1)
+                        }, "+"),
+                        m("span", [
+                            m("strong", `${count} clicks`)
+                        ]),
+                        m("button", { 
+                            onclick: () => setCountValue(-1)
+                        }, "-")
+                    ])
+                ])
+        }
+
+        m.mount(root, Home)
+    </script>
+</body>
+</html>
