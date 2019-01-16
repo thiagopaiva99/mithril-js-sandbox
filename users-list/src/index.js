@@ -1,3 +1,4 @@
 import m from 'mithril'
+import UserList from './views/UserList'
 
-m.render(document.body, 'Worked!')
+m.mount(document.body, UserList)
